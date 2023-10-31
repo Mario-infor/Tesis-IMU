@@ -4,22 +4,19 @@ using UnityEngine;
 
 public class Patrol : MonoBehaviour
 {
+    [Tooltip("Points for the agent to take as reference to patrol.")] 
+    [SerializeField] private Transform[] wayPoints;
+    [Tooltip("Object at which the agent will be looking at all the time.")]
+    [SerializeField] private Transform targetRot;
+    [Tooltip("Speed at which the agent will turn.")]
+    [SerializeField] private float turnSpeed;
+    [Tooltip("Speed at which the agent will move.")]
+    [SerializeField] private float speed;
 
-    public Transform[] wayPoints;
-    public Transform targetRot;
-    public float turnSpeed;
-    Quaternion rotGoal;
-    Vector3 direction;
-    private int currentPoint;
-    public float speed;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        currentPoint = 0;
-    }
-
-    // Update is called once per frame
+    private Quaternion rotGoal;
+    private Vector3 direction;
+    private int currentPoint = 0;
+    
     void Update()
     {
         if (transform.position != wayPoints[currentPoint].position)
